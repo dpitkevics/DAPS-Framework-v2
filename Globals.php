@@ -1,0 +1,5 @@
+<?php
+
+// DEFINITIONS
+DEFINE ('ROOT', dirname(__FILE__));
+DEFINE ('DS', DIRECTORY_SEPARATOR);
