@@ -19,8 +19,8 @@ $config = array (
     'database' => array (
         'type'                  =>      'mysql',
         'host'                  =>      'localhost',
-        'user'                  =>      'daniels',
-        'password'              =>      'ZTQwYTg1MT',
-        'db'                    =>      'test-port',
+        'user'                  =>      '****',
+        'password'              =>      '****',
+        'db'                    =>      '****',
     ),
 );
