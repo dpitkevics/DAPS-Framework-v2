@@ -5,6 +5,7 @@
         <title><?=$title;?></title>
         </head>
         <body>
+                <h1><?=$pageTitle;?></h1>
                 <?=$content;?>
         </body>
 </html>

@@ -15,7 +15,7 @@ class SiteController extends DController{
                     'title'     =>      'Index',
                     'name'      =>      $users[0]['name'],
                     'users'     =>      $users,
-                    'test'      =>      'Some sort of Page',
+                    'pageTitle'      =>      'Some sort of Page',
                 ));
         }
         
