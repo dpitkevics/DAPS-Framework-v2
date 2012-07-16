@@ -37,7 +37,7 @@ class DController extends DModule{
         {
                 foreach ($_GET as $key => $value) {
                         if ($key != 'page') {
-                                DController::$url_params[$key] = $value;
+                                DController::$url_params[$key] = htmlentities($value);
                         }
                 }
         }
@@ -52,7 +52,7 @@ class DController extends DModule{
         public static function getUrlParam($param)
         {
                 if (isset(DController::$url_params[$param]))
-                        return DController::$url_params[$param];
+                        return htmlentities(DController::$url_params[$param]);
                 else
                         return false;
         }
