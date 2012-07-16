@@ -31,7 +31,9 @@ class DComponent implements DApplicationTemplate{
          * @return string 
          */
         public function __get($variable) {
-                if (isset($this->_data[$variable]))
+                if (class_exists($variable)) {
+                        return new $variable;
+                } else if (isset($this->_data[$variable]))
                         return $this->_data[$variable];
                 else
                         return false;
