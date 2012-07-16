@@ -67,7 +67,7 @@ class DController extends DModule{
                 $sub_template = new DTemplate($name);
                 $sub_template->Set($tags);
                 $template->Set($tags);
-                $template->Set('content', &$sub_template);
+                $template->Set('content', $sub_template);
                 echo $template->parse();
         }
 }
