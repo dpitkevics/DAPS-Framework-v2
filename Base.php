@@ -17,7 +17,8 @@ class Base {
          * @return object 
          */
         public static function Application($name)
-        {
+        {       
+                set_error_handler(array("Base", "ErrorHandle"), E_ALL);
                 self::registerAutoloader();
                 $module = $name."Module";
                 $rules = call_user_func(array($module, 'rules'));
@@ -46,7 +47,7 @@ class Base {
          */
         public static function ShowErrorMessage($TYPE)
         {
-                print_r("Problem with ".$TYPE);
+                //print_r("Problem with ".$TYPE);
         }
         
         /**
@@ -136,6 +137,74 @@ class Base {
                 $jQueryPATH = $jQueryPATH["jQuery"]. DS ."jQuery.js";
                 return "<script type='text/javascript' src='".$jQueryPATH."'></script>";
         }
+        
+        public static function ErrorHandle($number, $string, $file, $context)
+        {
+                ?>
+<div style="border-radius: 7px; border: solid 5pt; padding:20px 30px; background:<?php 
+switch ($number) {
+        case E_USER_ERROR:
+                echo '#BD2A09';
+                break;
+        case E_USER_WARNING:
+                echo '#D98C07';
+                break;
+        case E_USER_NOTICE:
+                echo '#D9D507';
+                break;
+        case E_USER_DEPRECATED:
+                echo '#04DBA9';
+                break;
+        default:
+                echo '#04DB50';
+                break;
+}
+?>">
+        <table>
+                <tr>
+                        <td>Error type:</td>
+                        <td>
+                                <?php
+                                switch ($number) {
+                                        case E_USER_ERROR:
+                                                echo '<b>Fatal error</b>';
+                                                break;
+                                        case E_USER_WARNING:
+                                                echo '<b>Warning</b>';
+                                                break;
+                                        case E_USER_NOTICE:
+                                                echo '<b>Notice error</b>';
+                                                break;
+                                        case E_USER_DEPRECATED:
+                                                echo '<b>Deprecated function</b>';
+                                                break;
+                                        default:
+                                                echo '<b>Unknown error type</b>';
+                                                break;
+                                }
+                                ?>
+                        </td>
+                </tr>
+                <tr>
+                        <td>Error number: </td>
+                        <td><b><?=$number;?></b> </td>
+                </tr>
+                <tr>
+                        <td>Error string: </td>
+                        <td><b><?=$string;?></b> </td>
+                </tr>
+                <tr>
+                        <td>In file: </td>
+                        <td><b><?=$file;?></b> </td>
+                </tr>
+                <tr>
+                        <td>On line: </td>
+                        <td><b><?=$context;?></b> </td>
+                </tr>
+        </table>
+</div>
+                <?php
+        }
                 
         /**
          * Class name => place in folder structure
@@ -156,6 +225,7 @@ class Base {
                     "DMySQL"                    =>      "Base/Library",
                     "DCSS"                      =>      "Base/Library",
                     "DApp"                      =>      "Base/Core",
+                    "DScript"                   =>      "Base/Library",
                     "DHtml"                     =>      "Base/Library",
                     "Link"                      =>      "Base/Library/DHtml",
                     "Button"                    =>      "Base/Library/DHtml",

@@ -16,11 +16,16 @@ class DHtml extends DModule {
                 $paramList = $paramList[$type];
                 $structureList = self::StructureList();
                 $structureList = $structureList[$type];
+                $eventList = self::EventList();
+                $eventList = $eventList[$type];
 
                 $params = '';
                 foreach ($tags as $key => $value) {
-                        if (in_array($key, $paramList)) {
-                                $params .= $key."='".$value."' ";
+                        echo "'".addslashes($value)."'"."<br /><br />";
+                        if (in_array($key, $paramList) || in_array($key, $eventList)) {
+                                $params .= htmlspecialchars($key)."='".addslashes($value)."' ";
+                        } else {
+                                trigger_error("No such attribute - $key - for this HTML element", E_USER_WARNING);
                         }
                 }
                 $html = str_replace("###", $params, $structureList);
@@ -95,8 +100,9 @@ class DHtml extends DModule {
         private static function EventList ()
         {
                 return array (
+                    "a"         =>      array (),
                     "button"    =>      array (
-                        "onblur", "onblick", "ondblclick",
+                        "onblur", "onclick", "ondblclick",
                         "onfocus", "onmousedown", "onmousemove",
                         "onmouseout", "onmouseover", "onmouseup",
                         "onkeydown", "onkeypress", "onkeyup",

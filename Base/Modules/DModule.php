@@ -1,6 +1,6 @@
 <?php
 
-class DModule extends DComponent{
+class DModule extends DComponent {
     protected static $_moduleId;
     protected static $_modulePath;
     protected static $_moduleName;

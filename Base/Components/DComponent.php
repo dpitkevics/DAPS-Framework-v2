@@ -70,10 +70,8 @@ class DComponent implements DApplicationTemplate{
                 $this->$name = $value;
         }
         
-        public function onClick($object, $method) {
-                if (!is_array($method))
-                        return false;
-                // @TODO
+        public function onClick() {
+                
         }
 }
 
