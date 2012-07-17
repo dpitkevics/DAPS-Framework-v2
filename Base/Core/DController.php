@@ -48,9 +48,7 @@ class DController extends DModule{
         public static function loadUrl ()
         {
                 foreach ($_GET as $key => $value) {
-                        if ($key != 'page') {
-                                DController::$url_params[$key] = htmlentities($value);
-                        }
+                        DController::$url_params[$key] = htmlentities($value);
                 }
         }
         

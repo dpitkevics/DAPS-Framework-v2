@@ -156,6 +156,9 @@ class Base {
                     "DMySQL"                    =>      "Base/Library",
                     "DCSS"                      =>      "Base/Library",
                     "DApp"                      =>      "Base/Core",
+                    "DHtml"                     =>      "Base/Library",
+                    "Link"                      =>      "Base/Library/DHtml",
+                    "Button"                    =>      "Base/Library/DHtml",
                 );
         }
         
