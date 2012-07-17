@@ -1,0 +1,15 @@
+/* 
+    Document   : main
+    Created on : 2012.17.7, 09:35:30
+    Author     : danpit134
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+        display: block;
+}
+
+body {
+        background: #cccccc;
+}

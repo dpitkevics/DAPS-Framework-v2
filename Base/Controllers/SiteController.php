@@ -3,7 +3,8 @@
 class SiteController extends DController{
         public function rules ($enum = 'N') {
                 parent::rules(array (
-                    'template'          =>      'main.php',
+                    'template'          =>      'main',
+                    'templateExtension' =>      'php',
                     'auth'              =>      false,
                 ));
         }

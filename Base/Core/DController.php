@@ -2,6 +2,7 @@
 
 class DController extends DModule{
         private $_rules;
+        private static $rules;
         private static $url_params=array();
         
         /**
@@ -28,6 +29,17 @@ class DController extends DModule{
         public function rules ($rules)
         {
                 $this->_rules = $rules;
+                self::$rules = $rules;
+        }
+        
+        /**
+         * Returns rules defined in Controller
+         * 
+         * @return array/string
+         */
+        public static function getRules ()
+        {
+                return self::$rules;
         }
         
         /**
@@ -63,7 +75,11 @@ class DController extends DModule{
          * @param array/string $tags 
          */
         public function template($name, $tags = array()) {
-                $template = new DTemplate($this->_rules['template']);
+                if (isset($this->_rules['templateExtension']))
+                        $ext = $this->_rules['templateExtension'];
+                else
+                        $ext = "php";
+                $template = new DTemplate($this->_rules['template'].".".$ext);
                 $sub_template = new DTemplate($name);
                 $sub_template->Set($tags);
                 $template->Set($tags);

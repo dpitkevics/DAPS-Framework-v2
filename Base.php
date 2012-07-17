@@ -34,6 +34,11 @@ class Base {
                 
         }
         
+        public static function App()
+        {
+                return new DApp();
+        }
+        
         /**
          * Redirects to error page
          * 
@@ -82,7 +87,7 @@ class Base {
                         }   
                 }
                 if ($ERR)
-                        Base::ShowErrorMessage ('autoload');
+                        Base::ShowErrorMessage ('autoload ---'.$FILENAME);
         }
         
         /**
@@ -121,6 +126,18 @@ class Base {
         }
         
         /**
+         * Creates link to jQuery file
+         * 
+         * @return string 
+         */
+        public static function jQuery()
+        {
+                $jQueryPATH = Base::ExternalFilePlaceHolder();
+                $jQueryPATH = $jQueryPATH["jQuery"]. DS ."jQuery.js";
+                return "<script type='text/javascript' src='".$jQueryPATH."'></script>";
+        }
+                
+        /**
          * Class name => place in folder structure
          * 
          * @return array 
@@ -137,6 +154,8 @@ class Base {
                     "DView"                     =>      "Base/Views",
                     "DTemplate"                 =>      "Base/Templates",
                     "DMySQL"                    =>      "Base/Library",
+                    "DCSS"                      =>      "Base/Library",
+                    "DApp"                      =>      "Base/Core",
                 );
         }
         
@@ -146,7 +165,15 @@ class Base {
         public static function ModulePlaceHolder()
         {
                 return array (
-                        "DApplicationModule"    =>      "Base/Modules/Application",
+                    "DApplicationModule"        =>      "Base/Modules/Application",
+                );
+        }
+        
+        public static function ExternalFilePlaceHolder()
+        {
+                return array (
+                    "jQuery"                    =>      "Base/Core/Scripts",
+                    "CSS"                       =>      "Base/Styles",
                 );
         }
 }
